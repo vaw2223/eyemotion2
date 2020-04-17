@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>発電所名</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.genrate_electric_place|default_if_none:"未入力"  }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>発電事業者名</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.genrate_electric_company|default_if_none:"未入力"  }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>発電所在地</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.genrate_electric_address|default_if_none:"未入力"  }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>敷地面積/㎡</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.site_area|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>土地契約形態</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.land_agreement_type|default_if_none:"未入力"  }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>単価(権利取得日)</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.unit_price }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>売電開始日</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.sell_start_day|date:"Y年m月d日" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>稼働年数</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.operation_period|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>作成者</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.created_by.get_full_name }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>作成時間</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.created_at|date:"Y/m/d G:i:s" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>更新者</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.updated_by.get_full_name }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>更新時間</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.updated_at|date:"Y/m/d G:i:s" }}</p>
+    </div>
+</div>

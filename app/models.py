@@ -1,0 +1,178 @@
+from django.db import models
+
+from users.models import User
+from django.utils import timezone
+
+class Item(models.Model):
+    """
+    データ定義クラス
+      各フィールドを定義する
+    参考：
+    ・公式 モデルフィールドリファレンス
+    https://docs.djangoproject.com/ja/2.1/ref/models/fields/
+    """
+
+    # 発電所名　文字列
+    genrate_electric_place = models.CharField(
+        verbose_name='発電所名',
+        max_length=60,
+        blank=True,
+        null=False,
+        default='',
+    )
+
+    # 発電事業者名　文字列
+    genrate_electric_company = models.CharField(
+        verbose_name='発電事業者名',
+        max_length=60,
+        blank=True,
+        null=False,
+        default='',
+    )
+
+    # 発電所在地　文字列
+    genrate_electric_address = models.CharField(
+        verbose_name='発電所在地',
+        max_length=60,
+        blank=True,
+        null=False,
+        default='',
+    )
+
+    # 敷地面積/㎡ 整数
+    site_area = models.IntegerField(
+        verbose_name='敷地面積/㎡',
+        blank=True,
+        null=True,
+        default=0,
+    )
+
+
+    # 土地契約形態
+    land_agreement_type = models.CharField(
+        verbose_name='土地契約形態',
+        max_length=60,
+        blank=True,
+        null=False,
+        default='',
+    )
+
+    # 単価(権利取得日)  選択肢（固定）
+    unit_price_choice = (
+        (1, '40円'),
+        (2, '36円'),
+        (3, '32円'),
+    )
+
+    unit_price = models.IntegerField(
+        verbose_name='単価(権利取得日)',
+        choices=unit_price_choice,
+        blank=True,
+        null=False,
+        default=1,
+    )
+
+
+    # 売電開始日
+    sell_start_day = models.DateField(
+        verbose_name='売電開始日 日付',
+        blank=True,
+        null=False,
+        default=timezone.now()
+    )
+
+    # 稼働年数 選択肢（固定）
+    operation_period_choice = (
+        (1, '01年'),
+        (2, '02年'),
+        (3, '03年'),
+        (4, '04年'),
+        (5, '05年'),
+        (6, '06年'),
+        (7, '07年'),
+        (8, '08年'),
+        (9, '09年'),
+        (10, '10年'),
+        (11, '11年'),
+        (12, '12年'),
+        (13, '13年'),
+        (14, '14年'),
+        (15, '15年'),
+        (16, '16年'),
+        (17, '17年'),
+        (18, '18年'),
+        (19, '19年'),
+        (20, '20年'),
+        (21, '21年'),
+        (22, '22年'),
+        (23, '23年'),
+        (24, '24年'),
+        (25, '25年'),
+        (26, '26年'),
+        (27, '27年'),
+        (28, '28年'),
+        (29, '29年'),
+        (30, '30年'),
+    )
+
+    operation_period = models.IntegerField(
+        verbose_name='稼働年数',
+        choices=operation_period_choice,
+        blank=True,
+        null=False,
+        default=1,
+    )
+
+
+    # 以下、管理項目
+
+    # 作成者(ユーザー)
+    created_by = models.ForeignKey(
+        User,
+        verbose_name='作成者',
+        blank=True,
+        null=True,
+        related_name='CreatedBy',
+        on_delete=models.SET_NULL,
+        editable=False,
+    )
+
+    # 作成時間
+    created_at = models.DateTimeField(
+        verbose_name='作成時間',
+        blank=True,
+        null=True,
+        editable=False,
+    )
+
+    # 更新者(ユーザー)
+    updated_by = models.ForeignKey(
+        User,
+        verbose_name='更新者',
+        blank=True,
+        null=True,
+        related_name='UpdatedBy',
+        on_delete=models.SET_NULL,
+        editable=False,
+    )
+
+    # 更新時間
+    updated_at = models.DateTimeField(
+        verbose_name='更新時間',
+        blank=True,
+        null=True,
+        editable=False,
+    )
+
+    def __str__(self):
+        """
+        リストボックスや管理画面での表示
+        """
+        return self.genrate_electric_place
+
+    class Meta:
+        """
+        管理画面でのタイトル表示
+        """
+        verbose_name = '発電査定'
+        verbose_name_plural = '発電査定'
