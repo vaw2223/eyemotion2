@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,6 +126,8 @@ STATIC_URL = '/static/'
 #ima start
 STATIC_ROOT = "staticfiles"     #追記
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)  #追記
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 db_from_env = dj_database_url.config()
